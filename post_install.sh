@@ -6,6 +6,12 @@ sysrc -f /etc/rc.conf avahi_daemon_enable="YES"
 # link dns_sd.h to the place where its expected
 ln -s /usr/local/include/avahi-compat-libdns_sd/dns_sd.h /usr/include/dns_sd.h
 
+# enable avahi to use dbus
+sed -i -e 's/#enable-dbus/enable-dbus/' /usr/local/etc/avahi/avahi-daemon.conf
+
+# enable mdns usage for host resolution
+sed -i -e 's/hosts: file dns/hosts: file dns mdns/' /etc/nsswitch.conf
+
 # start services
 service dbus start
 service avahi-daemon start
