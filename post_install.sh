@@ -21,9 +21,16 @@ npm install -g --unsafe-perm homebridge
 npm install -g --unsafe-perm homebridge-config-ui-x
 
 # generate mac for homebridge
-CUSTOMMAC = `env LC_ALL=C tr -c -d '0123456789abcdef' < /dev/urandom | head -c 12 | sed 's!^M$!!;s!\-!!g;s!\.!!g;s!\(..\)!\1:!g;s!:$!!' | tr [:lower:] [:upper:]`
+HOMEMAC=`env LC_ALL=C tr -c -d '0123456789abcdef' < /dev/urandom | head -c 12 | sed 's!^M$!!;s!\-!!g;s!\.!!g;s!\(..\)!\1:!g;s!:$!!' | tr [:lower:] [:upper:]`
 
-sed -i -e "s/CC:22:3D:E3:CE:30/$CUSTOMMAC/" /root/.homebridge/config.json
+# insert generated mac into config (unless you change the mac/pin homebridge wont work properly)
+sed -i -e "s/CC:22:3D:E3:CE:30/$HOMEMAC/" /root/.homebridge/config.json
+
+# generate new pin for this installation
+HOMEPIN=`env LC_ALL=C tr -c -d '0123456789' < /dev/urandom | head -c 8 | sed 's/^\(...\)\(..\)\(...\)/\1-\2-\3/'`
+
+# insert new pin into homebridge configuration
+sed -i -e "s/031-45-154/$HOMEPIN/" /root/.homebridge/config.json
 
 # install process manager to keep homebridge running / booting on iocage restarts
 # and provide the config ui with logs
