@@ -20,6 +20,11 @@ service avahi-daemon start
 npm install -g --unsafe-perm homebridge
 npm install -g --unsafe-perm homebridge-config-ui-x
 
+# generate mac for homebridge
+CUSTOMMAC = `env LC_ALL=C tr -c -d '0123456789abcdef' < /dev/urandom | head -c 12 | sed 's!^M$!!;s!\-!!g;s!\.!!g;s!\(..\)!\1:!g;s!:$!!' | tr [:lower:] [:upper:]`
+
+sed -i -e "s/CC:22:3D:E3:CE:30/$CUSTOMMAC/" /root/.homebridge/config.json
+
 # install process manager to keep homebridge running / booting on iocage restarts
 # and provide the config ui with logs
 npm install -g pm2
