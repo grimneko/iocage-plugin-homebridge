@@ -1,5 +1,9 @@
+# iocage-plugin-homebridge
+
 a basic homebridge plugin with the webui (homebridge-config-ui-x) setup.
-Please keep in mind to change the pin code, the mac and set a password for the admin.
+The inital password/login for the webui is "admin/admin", please change it right away for security reasons.
+The mac/pin required by homebridge is generated at the time of the installation randomly just for you.
+
 
 I want to thank the following webpages/users for providing me pointers and hints to make this
 possible:
