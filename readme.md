@@ -3,6 +3,8 @@
 a basic homebridge plugin with the webui (homebridge-config-ui-x) setup.
 The inital password/login for the webui is "admin/admin", please change it right away for security reasons.
 The mac/pin required by homebridge is generated at the time of the installation randomly just for you.
+The UI can be reached at port 80 on the IP you choose at the installation, this differs from the default 
+but makes things more convinient as we use a dedicated IP for this.
 
 
 I want to thank the following webpages/users for providing me pointers and hints to make this
