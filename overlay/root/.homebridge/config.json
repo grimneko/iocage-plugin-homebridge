@@ -10,7 +10,7 @@
         	{
 			"platform": "config",
 			"name": "Config",
-			"port": "8080",
+			"port": "80",
 			"auth": "form",
 			"theme": "red",
 			"restart": "pm2 restart homebridge",
